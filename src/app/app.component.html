@@ -22,6 +22,84 @@
 
 
 <h1 [(ngModel)]="Name"></h1>
+<div>
+  <input type="radio" [(ngModel)]="selectedOption" name="check" [value]="true" (change)="click()"> True
+  <input type="radio" [(ngModel)]="selectedOption" name="check" [value]="false" (change)="click()"> False
+</div>
+
+
+<h1>{{selectedOption}}</h1>
+
+<h3 *ngIf="islogin">Login Successful by ng-ifelse syntax</h3>
+<h3 *ngIf="!islogin">Login Failed  by ng-ifelse syntax</h3>
+
+{{islogin}}
+
+@if(islogin){
+  <h1>Login Successful by ifelse syntax</h1>
+}
+@else{
+  <h1>Login Failed by ifelse syntax</h1>
+}
+  <br>
+  <br>
+
+<div>
+
+  <label for="">UserName:
+    <input type="text" [(ngModel)]="InputUname">
+  </label>
+  <button (click)="checkUsername()">Login</button>
+
+</div>
+
+  @if(counter != 0){
+    
+    @if(islogin){
+      <h1>Login Successful {{username}}</h1>
+  }
+  @else{
+    <h1>Login Failed</h1>
+  }
+}
+
+
+<button *ngIf="counter < 5;  else template" >Click me!</button>
+
+<ng-template #template>
+
+  <h1>this is from template</h1>
+</ng-template>
+
+
+
+<br>
+<br>
+<br>
+
+<ng-template #btn>
+  <p>hello</p>
+  <button>Click Me</button>
+</ng-template>
+
+
+<div >
+  <h1>NgTemplate</h1>
+
+  <div [ngTemplateOutlet]="btn">
+    <h3>NavBar</h3>
+  </div>
+
+  <div [ngTemplateOutlet]="btn" >
+    <h3>SideBar</h3>
+  </div>
+
+  <div [ngTemplateOutlet]="btn" >
+    <h3>Footer</h3>
+  </div>
+
+
+</div>
 
 
 

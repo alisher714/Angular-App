@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { AppNavBar } from './Navbar/navbar.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
+import { NgIf, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AppNavBar, HeaderComponent, FormsModule],
+  imports: [RouterOutlet, AppNavBar, HeaderComponent, FormsModule,NgIf,NgTemplateOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -37,12 +38,33 @@ export class AppComponent {
     }
   }
 
-  username = "Ali Sher"
   keyupFiltering(users:HTMLInputElement){
     console.log(users.value);
   }
-
-
-
+  
+  selectedOption: boolean = false;
+  islogin: boolean = false;
+  click(){
+    this.islogin = this.selectedOption;
+  }
   Name = "Ali Sher OK";  
+  
+  
+
+
+  
+  
+  username: string = "alisher714";
+
+  InputUname = "";
+  counter = 0;
+  checkUsername() {
+    this.counter++;
+    if (this.username === this.InputUname) {
+      this.islogin = true;
+    } else {
+      this.islogin = false;
+    }
+  }
+
 }
