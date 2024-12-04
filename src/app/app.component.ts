@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild, AfterViewInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AppNavBar } from './Navbar/navbar.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
-import { NgIf, NgTemplateOutlet } from '@angular/common';
+import { NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AppNavBar, HeaderComponent, FormsModule,NgIf,NgTemplateOutlet],
+  imports: [RouterOutlet, AppNavBar, HeaderComponent, FormsModule,NgIf,NgTemplateOutlet,NgFor],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -47,7 +47,7 @@ export class AppComponent {
   click(){
     this.islogin = this.selectedOption;
   }
-  Name = "Ali Sher OK";  
+ 
   
   
 
@@ -66,5 +66,78 @@ export class AppComponent {
       this.islogin = false;
     }
   }
+
+  Fruits = ["Mango", "Banana", "Apple", "grapes"]
+
+
+
+person : any = [
+]
+
+ID="";
+Name = "";
+Age="";
+
+
+
+addnew(){
+  if(this.ID!="" && this.Name != "" &&this.Age!= ""){
+    let newobj={id: this.ID, name:this.Name, age:this.Age}
+    this.person.push(newobj);
+    this.clear();
+  }
+  else
+  alert('Please Fill')
+
+}
+
+
+ondelete(P:any){
+  let index = this.person.indexOf(P);
+  this.person.splice(index,1)
+  
+}
+
+editindex = 0;
+editcount=0;
+onEdit(P:any){
+  this.editindex = this.person.indexOf(P);
+  this.ID = P.id;
+  this.Name = P.name;
+  this.Age = P.age;
+  this.editcount++;
+}
+
+update(){
+  this.person[this.editindex].id = this.ID
+  this.person[this.editindex].name = this.Name
+  this.person[this.editindex].age = this.Age
+  this.editcount = 0;
+  this.clear();
+}
+
+clear(){
+  this.ID = '';
+  this.Name = "";
+  this.Age = '';
+}
+
+// To View in Child View From Parent View
+Common = "Common Vaiable"
+
+
+
+
+// get varible from Child View to Parent View.
+@ViewChild(HeaderComponent) childmessage :any ;
+message = "";
+constructor(){
+  console.log(this.childmessage)
+}
+
+ngAfterViewInit(){
+  this.message = this.childmessage.username
+  // console.log(this.message)
+}
 
 }

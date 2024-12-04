@@ -1,3 +1,4 @@
+
 .container{
     display: flex;
     flex-direction: column;
@@ -6,4 +7,28 @@
 
 h2{
     font-size: 72px ;
+}
+
+tr:hover{
+    background-color: rgb(196, 196, 196);
+}
+th{
+    background-color: grey
+}
+tr>td>button{
+    cursor: pointer;
+    background: transparent;
+}
+tr>td>button:hover{
+    background-color: red;
+}
+
+table{
+    width: 90%;
+
+}
+
+.Main-table{
+    display: flex;
+    justify-content: center;
 }

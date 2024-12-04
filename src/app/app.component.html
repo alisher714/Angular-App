@@ -1,5 +1,5 @@
 <h1>{{title}}</h1>
-
+<!-- 
 
 <nav-bar></nav-bar>
 <app-header></app-header>
@@ -22,12 +22,13 @@
 
 
 <h1 [(ngModel)]="Name"></h1>
+-->
 <div>
   <input type="radio" [(ngModel)]="selectedOption" name="check" [value]="true" (change)="click()"> True
   <input type="radio" [(ngModel)]="selectedOption" name="check" [value]="false" (change)="click()"> False
 </div>
 
-
+<!--
 <h1>{{selectedOption}}</h1>
 
 <h3 *ngIf="islogin">Login Successful by ng-ifelse syntax</h3>
@@ -93,18 +94,76 @@
   <div [ngTemplateOutlet]="btn" >
     <h3>SideBar</h3>
   </div>
-
+  
   <div [ngTemplateOutlet]="btn" >
     <h3>Footer</h3>
   </div>
+</div>
+  
+  <br>
+  <br>
+  <br>
+<h1>Arrays</h1>
 
 
+<h3 *ngFor="let fruit of Fruits" >{{fruit}}</h3>
+<br>
+<br>
+<br>
+
+@for(fruit of Fruits; track fruit){
+  <h4>{{fruit}}</h4>
+}
+ -->
+ 
+ <input type="number" [(ngModel)]="ID" placeholder="Enter Id">
+<input type="text" [(ngModel)]="Name" placeholder="Enter Name">
+<input type="number" [(ngModel)]="Age" placeholder="Enter Age">
+<button *ngIf="(editcount==0)"(click)="addnew()">Add new Person</button>
+<button *ngIf="(editcount!=0)" (click)="update()">update</button>
+
+<div class="Main-table">
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let P of person">
+        <td>{{P.id}}</td>
+        <td>{{P.name}}</td>
+        <td>{{P.age}}</td>
+        <td>
+          <button (click)="ondelete(P)">Delete</button>
+          <button (click)="onEdit(P)">Edit</button>
+        </td>
+    </tr>
+  </tbody>
+ </table>
 </div>
 
 
+<br>
+<br>
+<br>
+<br>
+
+<h1>{{Common}} from APP Component</h1>
+
+
+<app-header [CommonHeader]="Common" [LoginStatus]="islogin"></app-header>
+
+<p>
+
+  {{message}}
+</p>
 
 
 
 
-
-
+ <!-- <h2 *ngFor="let P of person" >{{P.id}} </h2> -->
