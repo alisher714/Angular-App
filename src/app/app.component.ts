@@ -1,13 +1,13 @@
-import { Component,ViewChild, AfterViewInit } from '@angular/core';
+import { Component,ViewChild, AfterViewInit, ViewContainerRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AppNavBar } from './Navbar/navbar.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
-import { NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
+import { NgComponentOutlet, NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AppNavBar, HeaderComponent, FormsModule,NgIf,NgTemplateOutlet,NgFor],
+  imports: [RouterOutlet, AppNavBar, HeaderComponent, FormsModule,NgIf,NgTemplateOutlet,NgFor,NgComponentOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -131,13 +131,37 @@ Common = "Common Vaiable"
 // get varible from Child View to Parent View.
 @ViewChild(HeaderComponent) childmessage :any ;
 message = "";
-constructor(){
-  console.log(this.childmessage)
-}
+// constructor(){
+//   console.log(this.childmessage)
+// }
 
 ngAfterViewInit(){
   this.message = this.childmessage.username
   // console.log(this.message)
+}
+
+//Event Emiter
+recieveEvent(msg: string){
+  
+    console.log(msg)
+}
+
+
+//Lifecycle hooks
+
+constructor(private viewContainer:ViewContainerRef){}
+
+loadComponent(){
+  this.viewContainer.createComponent(HeaderComponent);
+}
+
+removeComponent(){
+  this.viewContainer.remove();
+
+}
+
+valuechanges(){
+  this.username = 'ERP'
 }
 
 }

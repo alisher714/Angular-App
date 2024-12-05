@@ -155,13 +155,33 @@
 
 <h1>{{Common}} from APP Component</h1>
 
+<!-- getting View from child view using parent Component -->
+<app-header [username]="username" [CommonHeader]="Common" [LoginStatus]="islogin" (msgevent)="recieveEvent($event)">Header Componentswdew</app-header>
 
-<app-header [CommonHeader]="Common" [LoginStatus]="islogin"></app-header>
+
 
 <p>
-
   {{message}}
 </p>
+
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+
+<!-- <div ngComponentOutlet="loadComponent()" ></div> -->
+<button (click)="loadComponent()" >Click to Load Component</button>
+<button (click)="removeComponent()" >Click to Remove Component</button>
+
+
+<button (click)="valuechanges()" >change</button>
+
+
 
 
 
