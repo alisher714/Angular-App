@@ -185,4 +185,14 @@ addCar(){
 }
 
 
+formSubmit(event:any){
+
+  console.log("Form Submitted")
+  console.log(event.value)
+}
+
+getvalue(name:any){
+  console.log(name); 
+}
+
 }

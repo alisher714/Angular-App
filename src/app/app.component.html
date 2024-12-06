@@ -199,4 +199,29 @@
    <button (click)="addCar()">Add New</button>
 </h1>
 
+
+
+<br><br><br>
+
+<div class="form">
+  <h1>Angular Form</h1>
+  <form (submit)="formSubmit(f)" #f="ngForm">
+
+    <input type="text" name="fullname" id="name" placeholder="Enter Name" ngModel #fullname="ngModel" (change)="getvalue(fullname)">
+    @if(fullname.value == ""){
+      <span>
+        FullName Required
+      </span>
+    }
+    <br><br>
+    <input type="text" name="Email" id="email" placeholder="Enter Email" ngModel>
+    <br><br>
+    <input type="text" name="city" id="city" placeholder="Enter City" ngModel>
+    <br><br>
+    <button>Submit</button>
+  </form>
+</div>
+
+
+
  <!-- <h2 *ngFor="let P of person" >{{P.id}} </h2> -->
