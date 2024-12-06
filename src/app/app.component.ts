@@ -3,11 +3,14 @@ import { RouterOutlet } from '@angular/router';
 import { AppNavBar } from './Navbar/navbar.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
-import { NgComponentOutlet, NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
+import { JsonPipe, NgComponentOutlet, NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
+import { PostService } from './services/post.service';
+import { CarType } from './interface/type';
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AppNavBar, HeaderComponent, FormsModule,NgIf,NgTemplateOutlet,NgFor,NgComponentOutlet],
+  imports: [RouterOutlet, AppNavBar, HeaderComponent, FormsModule,NgIf,NgTemplateOutlet,NgFor,NgComponentOutlet,JsonPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -149,7 +152,6 @@ recieveEvent(msg: string){
 
 //Lifecycle hooks
 
-constructor(private viewContainer:ViewContainerRef){}
 
 loadComponent(){
   this.viewContainer.createComponent(HeaderComponent);
@@ -163,5 +165,24 @@ removeComponent(){
 valuechanges(){
   this.username = 'ERP'
 }
+
+postService: Array<CarType>;
+
+constructor(private viewContainer:ViewContainerRef, private postServiceDI : PostService){
+  this.postService = postServiceDI.getpost();
+}
+
+
+addCar(){
+  let NewCar:CarType=
+  { 
+    name: 'Toyota', 
+    model: 1999, 
+    color: 'Black'
+  }
+  
+  this.postServiceDI.addCarService(NewCar)
+}
+
 
 }

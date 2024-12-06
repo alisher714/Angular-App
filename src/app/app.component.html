@@ -184,6 +184,19 @@
 
 
 
+<br><br><br><br>
 
+<h1>
+  <ul>
+    <li *ngFor="let car of postService;">
+        {{car.name}}
+        {{car.model}}
+        {{car.color}}
+       <!-- car -->
+    </li>
+  </ul>
+  <!-- {{postService | json}} -->
+   <button (click)="addCar()">Add New</button>
+</h1>
 
  <!-- <h2 *ngFor="let P of person" >{{P.id}} </h2> -->
